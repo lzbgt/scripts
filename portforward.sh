@@ -1,7 +1,5 @@
-#!/bin/sh
 
-###
-# tools for forward local port to remote host
+ls for forward local port to remote host
 # Bruce.Lu <rikusouhou@gmail.com> 2015
 
 basename $0
@@ -40,7 +38,7 @@ rm -fr $CRONFILE
 rm -fr $PROJ.sh
 tee $PROJ.sh << PROJSH >/dev/null 2>&1
 #!/bin/sh
-EXISTED=\`netstat -antp|grep ssh|grep -c "$TARGETADDR"\`
+EXISTED=\`ps -eaf|grep ssh|grep -c "$TARGETADDR"\`
 if [ "\$EXISTED" == "0" ]
 then
     if [ "$REVERT" == "1" ]
@@ -50,7 +48,6 @@ then
     ssh -L $TARGETADDR -fgN $PROXYIP
     fi
 fi
-
 PROJSH
 
 chmod +x $PROJ.sh
